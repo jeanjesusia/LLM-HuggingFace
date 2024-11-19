@@ -17,17 +17,14 @@ Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar alg
 
 ## Bibliotecas Importadas
 
-### **Transformers**: Tarefas de PLN
-- A biblioteca *Transformers* da Hugging Face é essencial para trabalhar com modelos de linguagem pré-treinados. Ela fornece ferramentas para realizar tarefas de Processamento de Linguagem Natural (PLN), como geração de texto, tradução, classificação, entre outras. A biblioteca simplifica o acesso e o uso de modelos avançados, como GPT, BERT e T5.
+- **Transformers**: A *Transformers* é uma biblioteca da Hugging Face essencial para trabalhar com modelos de linguagem pré-treinados. Ela oferece ferramentas para tarefas de Processamento de Linguagem Natural (PLN), como geração de texto, tradução, classificação, entre outras.
 
-### **einops**: Maneira Flexível para Manipular Tensores
-- A *einops* é uma biblioteca que oferece uma maneira simples e eficiente de manipular tensores de alta dimensão. Com ela, é possível realizar operações de reshape, permutação e redução de forma legível e otimizada, facilitando a manipulação de dados durante o treinamento e inferência de modelos de linguagem.
+- **einops**: A *einops* é uma biblioteca que oferece uma maneira simples e eficiente de manipular tensores de alta dimensão. Com ela, é possível realizar operações como reshape, permutação e redução de forma legível e otimizada, facilitando o trabalho com grandes modelos de linguagem.
 
-### **accelerate**: Simplifica o Processo de Treinamento dos Modelos
-- A biblioteca *accelerate* da Hugging Face simplifica o processo de treinamento de modelos, especialmente em configurações com múltiplas GPUs. Ela facilita a paralelização e a distribuição de tarefas, tornando o treinamento de modelos grandes mais rápido e acessível, sem exigir configurações complexas.
+- **accelerate**: A *accelerate* simplifica o processo de treinamento de modelos, especialmente em configurações com múltiplas GPUs. Ela permite paralelização e distribuição de tarefas, tornando o treinamento de modelos grandes mais rápido e acessível, sem a necessidade de configurações complexas.
 
-### **bitsandbytes**: Permite LLMs com Quantização
-- O *bitsandbytes* é uma biblioteca que possibilita a quantização de modelos de linguagem, reduzindo seu tamanho e exigências de memória sem perder muito da precisão. Isso é crucial para executar modelos grandes de forma eficiente em máquinas com menor capacidade de hardware, sem comprometer os resultados.
+- **bitsandbytes**: A *bitsandbytes* é uma biblioteca que permite a quantização de modelos de linguagem, reduzindo seu tamanho e exigências de memória sem sacrificar muita precisão. Isso é essencial para executar LLMs (Modelos de Linguagem de Grande Escala) de forma eficiente em máquinas com recursos limitados.
+
 
 
 - ** 
