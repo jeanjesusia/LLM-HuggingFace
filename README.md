@@ -15,7 +15,7 @@ Embora seja possível rodar alguns desses modelos em CPUs, o uso de **GPU** (Uni
 ## Instalando as Dependências
 Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar algumas bibliotecas que são essenciais para execução do modelo:
 
-## Bibliotecas Importadas
+## Bibliotecas Necessárias
 
 - **Transformers**: A *Transformers* é uma biblioteca da Hugging Face essencial para trabalhar com modelos de linguagem pré-treinados. Ela oferece ferramentas para tarefas de Processamento de Linguagem Natural (PLN), como geração de texto, tradução, classificação, entre outras.
 
@@ -26,7 +26,64 @@ Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar alg
 - **bitsandbytes**: A *bitsandbytes* é uma biblioteca que permite a quantização de modelos de linguagem, reduzindo seu tamanho e exigências de memória sem sacrificar muita precisão. Isso é essencial para executar LLMs (Modelos de Linguagem de Grande Escala) de forma eficiente em máquinas com recursos limitados.
 
 
-
-- ** 
-```bash
+```python
 !pip install -q transformers einops accelerate bitsandbytes
+```
+
+## Hands On:
+<b>Imports:</b> Para começar, devemos realizar as importações das bibliotecas necessárias para execução do código:
+```bash
+import getpass
+import os
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig, pipeline
+```
+**Verificação de GPU:** Se estiver executando o codigo localmente, será necessário realizar a configuração do Nvidia CUDA e cuDNN para que o Pytorch consiga acessar a placa de vídeo para realizar o processamento (verificar na documentação se sua placa de vídeo é compatível). Para este exemplo, estarei usando uma RTX 2060. O codigo abaixo deverá retornar o nome da placa de vídeo se disponível:
+```python
+device = "cuda:0" if torch.cuda.is_available() else "cpu" # Verificar se há gpu disponivel
+print(torch.cuda.get_device_name())
+```
+**API KEY:** Para utilizar os modelos disponibilizados no HuggingFace é necessário realizar a criação da chave API, você poderá gerar sua chave após logar na sua conta do huggingFace acessando **Settings** > **Access Tokens** > **Create new token**:
+
+![image](https://github.com/user-attachments/assets/e4674b4f-e475-45de-93d6-d71cefe522b7)
+
+O codigo abaixo irá solicitar o Access Token gerado e irá configurar a variável de ambiente:
+```python
+os.environ["HF_TOKEN"] = getpass.getpass()
+```
+### Configuração e Download do Modelo:
+Para este exemplo, iremos utilizar o modelo Phi-3.5-mini-instruct da microsoft, para isso, precisaremos especificar o modelo via `id` que é encontrado na pagina do modelo no huggingFace:
+
+![image](https://github.com/user-attachments/assets/8ec17b13-11df-49da-a9ac-d59cfd80dd8c)
+
+Com essa informação, executaremos o codigo abaixo para baixar o modelo
+```python
+
+# Identificador do modelo a ser baixado do repositório Hugging Face
+id_model = 'microsoft/Phi-3.5-mini-instruct'
+
+# Carrega o modelo selecionado a partir do repositório Hugging Face
+model = AutoModelForCausalLM.from_pretrained(
+    id_model,                    # Identificador único do modelo a ser baixado
+    device_map="cuda",            # Define o uso de GPU (cuda) para aceleração de hardware
+    torch_dtype="auto",           # Permite ao PyTorch selecionar automaticamente o tipo de dado (float32 ou float16) com base na disponibilidade de hardware
+    trust_remote_code=True,       # Habilita a execução de código remoto, permitindo que o modelo baixe e execute scripts adicionais necessários para o seu funcionamento
+    attn_implementation="eager"   # Define a implementação do mecanismo de atenção, sendo "eager" um modo mais simples e direto
+)
+
+# Baixa e carrega o tokenizador correspondente ao modelo, necessário para converter texto em tokens e vice-versa
+tokenizer = AutoTokenizer.from_pretrained(id_model)
+
+```
+
+**Pipeline:** Após realizar o download do modelo, é necessário configurar a pipeline de execuções do modelo
+```python
+# Criação de um pipeline para execução de geração de texto, utilizando o modelo e tokenizador definidos anteriormente
+pipe = pipeline(
+    "text-generation",            # Define o tipo de tarefa do pipeline: "text-generation" (geração de texto)
+    model=model,                  # Passa o modelo previamente carregado que será usado para a geração de texto
+    tokenizer=tokenizer           # Passa o tokenizador previamente carregado, necessário para converter texto em tokens e vice-versa
+)
+```
+
+***Parâmetros para geração de texto:*** Após configurar a estrutura do pipeline, é necessário passar as informações sobre como o texto será gerado, para isso utilizaremos a definição abaixo:
