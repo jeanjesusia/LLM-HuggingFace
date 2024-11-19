@@ -27,7 +27,7 @@ Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar alg
 
 
 ```python
-!pip install -q transformers einops accelerate bitsandbytes
+!pip install -q transformers einops accelerate bitsandbytes gradio
 ```
 
 ## Hands On:
