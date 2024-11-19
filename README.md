@@ -1,4 +1,4 @@
-# Consumindo Modelos de Linguagem com Hugging Face e Python
+# Consumindo Modelos de LLMs com Hugging Face e Python
 
 # Introdução
 Com o avanço da Inteligencia Artificial (IA) e do processamento de linguagem natural (PLN), os Modelos de Linguagm de Grande Escala (LLMs) têm ganhado cada vez mais destaque, tornando-se cada vez mais essenciais em diversas aplicações de IA no mundo real.
