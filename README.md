@@ -36,6 +36,7 @@ Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar alg
 import getpass
 import os
 import torch
+import gradio as gr
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig, pipeline
 ```
 **Verificação de GPU:** Se estiver executando o codigo localmente, será necessário realizar a configuração do Nvidia CUDA e cuDNN para que o Pytorch consiga acessar a placa de vídeo para realizar o processamento (verificar na documentação se sua placa de vídeo é compatível). Para este exemplo, estarei usando uma RTX 2060. O codigo abaixo deverá retornar o nome da placa de vídeo se disponível:
