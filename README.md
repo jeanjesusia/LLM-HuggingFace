@@ -87,3 +87,38 @@ pipe = pipeline(
 ```
 
 ***Parâmetros para geração de texto:*** Após configurar a estrutura do pipeline, é necessário passar as informações sobre como o texto será gerado, para isso utilizaremos a definição abaixo:
+```python
+generation_args = {
+    "max_new_tokens": 500,  # Máximo de tokens gerados.
+    "return_full_text": False,  # Retornará apenas a resposta gerada.
+    "temperature": 0.1,  # Controle da criatividade (menor = mais direto).
+    "do_sample": True,  # Respostas mais aleatórias.
+}
+
+```
+**Utilização:** Agora que quase todas configurações foram feitas, vamos criar uma função para realizar as requisições de respostas ao modelo, para isso utilizaremos também o gradio, para forncecer uma interface amigável de iteração com chatbot, para isso, utilizamos o codigo abaixo:
+```python
+def realizar_pergunta(prompt):
+    messages = [
+        {"role": "system", "content" : "Você é um assistente virtual prestativo. Responda somente em Português."},
+        {"role": "user", "content": prompt}
+    ]
+    
+    output = pipe(messages, **generation_args)
+    return output[0]['generated_text']
+
+# Função para a interface Gradio
+def chat_interface(prompt):
+    resposta = realizar_pergunta(prompt)
+    return resposta[2]['content']
+
+# Criando a interface Gradio
+iface = gr.Interface(fn=chat_interface, inputs="text", outputs="text", live=True, title="Assistente Virtual")
+
+# Iniciando a interface
+iface.launch()
+```
+
+O codigo acima irá criar um servidor com a interfacio Gradio, que possibilita a iteração com o modelo, podemos ver conforme imagem abaixo o teste com a seguinte pergunta: `O que são LLMs?`:
+
+![image](https://github.com/user-attachments/assets/ae72ed7f-5e08-4a58-936b-1d72deda91b2)
