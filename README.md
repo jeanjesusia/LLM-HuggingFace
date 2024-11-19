@@ -14,5 +14,22 @@ Embora seja possível rodar alguns desses modelos em CPUs, o uso de **GPU** (Uni
 
 ## Instalando as Dependências
 Antes de começarmos a utilizar os modelos de linguagem, precisamos instalar algumas bibliotecas que são essenciais para execução do modelo:
+
+## Bibliotecas Importadas
+
+### **Transformers**: Tarefas de PLN
+- A biblioteca *Transformers* da Hugging Face é essencial para trabalhar com modelos de linguagem pré-treinados. Ela fornece ferramentas para realizar tarefas de Processamento de Linguagem Natural (PLN), como geração de texto, tradução, classificação, entre outras. A biblioteca simplifica o acesso e o uso de modelos avançados, como GPT, BERT e T5.
+
+### **einops**: Maneira Flexível para Manipular Tensores
+- A *einops* é uma biblioteca que oferece uma maneira simples e eficiente de manipular tensores de alta dimensão. Com ela, é possível realizar operações de reshape, permutação e redução de forma legível e otimizada, facilitando a manipulação de dados durante o treinamento e inferência de modelos de linguagem.
+
+### **accelerate**: Simplifica o Processo de Treinamento dos Modelos
+- A biblioteca *accelerate* da Hugging Face simplifica o processo de treinamento de modelos, especialmente em configurações com múltiplas GPUs. Ela facilita a paralelização e a distribuição de tarefas, tornando o treinamento de modelos grandes mais rápido e acessível, sem exigir configurações complexas.
+
+### **bitsandbytes**: Permite LLMs com Quantização
+- O *bitsandbytes* é uma biblioteca que possibilita a quantização de modelos de linguagem, reduzindo seu tamanho e exigências de memória sem perder muito da precisão. Isso é crucial para executar modelos grandes de forma eficiente em máquinas com menor capacidade de hardware, sem comprometer os resultados.
+
+
+- ** 
 ```bash
-pip install transformers
+!pip install -q transformers einops accelerate bitsandbytes
