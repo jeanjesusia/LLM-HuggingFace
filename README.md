@@ -122,3 +122,6 @@ iface.launch()
 O codigo acima irá criar um servidor com a interfacio Gradio, que possibilita a iteração com o modelo, podemos ver conforme imagem abaixo o teste com a seguinte pergunta: `O que são LLMs?`:
 
 ![image](https://github.com/user-attachments/assets/ae72ed7f-5e08-4a58-936b-1d72deda91b2)
+
+## Conclusão
+Neste repositório, mostramos como utilizar LLMs com a Hugging Face de maneira simples e eficiente, usando Python. Agora você tem os conhecimentos básicos para aplicar modelos de linguagem em seus próprios projetos e explorar as possibilidades dessa tecnologia.
