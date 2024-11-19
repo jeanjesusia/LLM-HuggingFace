@@ -123,7 +123,7 @@ iface = gr.Interface(fn=chat_interface, inputs="text", outputs="text", live=True
 iface.launch()
 ```
 
-O codigo acima irá criar um servidor com a interfacio Gradio, que possibilita a iteração com o modelo, podemos ver conforme imagem abaixo o teste com a seguinte pergunta: `O que são LLMs?`:
+O codigo acima irá criar um servidor com a interface Gradio, que possibilita a iteração com o modelo, podemos ver conforme imagem abaixo o teste com a seguinte pergunta: `O que são LLMs?`:
 
 ![image](https://github.com/user-attachments/assets/ae72ed7f-5e08-4a58-936b-1d72deda91b2)
 
