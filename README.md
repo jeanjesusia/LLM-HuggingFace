@@ -39,11 +39,13 @@ import torch
 import gradio as gr
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig, pipeline
 ```
+
 **Verificação de GPU:** Se estiver executando o codigo localmente, será necessário realizar a configuração do Nvidia CUDA e cuDNN para que o Pytorch consiga acessar a placa de vídeo para realizar o processamento (verificar na documentação se sua placa de vídeo é compatível). Para este exemplo, estarei usando uma RTX 2060. O codigo abaixo deverá retornar o nome da placa de vídeo se disponível:
 ```python
 device = "cuda:0" if torch.cuda.is_available() else "cpu" # Verificar se há gpu disponivel
 print(torch.cuda.get_device_name())
 ```
+
 **API KEY:** Para utilizar os modelos disponibilizados no HuggingFace é necessário realizar a criação da chave API, você poderá gerar sua chave após logar na sua conta do huggingFace acessando **Settings** > **Access Tokens** > **Create new token**:
 
 ![image](https://github.com/user-attachments/assets/e4674b4f-e475-45de-93d6-d71cefe522b7)
@@ -52,6 +54,7 @@ O codigo abaixo irá solicitar o Access Token gerado e irá configurar a variáv
 ```python
 os.environ["HF_TOKEN"] = getpass.getpass()
 ```
+
 ### Configuração e Download do Modelo:
 Para este exemplo, iremos utilizar o modelo Phi-3.5-mini-instruct da microsoft, para isso, precisaremos especificar o modelo via `id` que é encontrado na pagina do modelo no huggingFace:
 
